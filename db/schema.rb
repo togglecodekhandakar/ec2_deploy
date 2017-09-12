@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911035016) do
+ActiveRecord::Schema.define(version: 20170912234702) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "category_id"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20170911035016) do
 
   create_table "commonquestions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "commonquestion_id"
-    t.string "question_text"
-    t.string "options"
+    t.text "question_text"
+    t.text "options"
     t.string "answer_option_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,9 +59,9 @@ ActiveRecord::Schema.define(version: 20170911035016) do
 
   create_table "permitdetails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "permitdetail_id"
-    t.string "strreply"
-    t.string "question_text"
-    t.string "commonquestion_text"
+    t.text "strreply"
+    t.text "question_text"
+    t.text "commonquestion_text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "permit_id"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20170911035016) do
 
   create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "question_id"
-    t.string "question_text"
-    t.string "options"
+    t.text "question_text"
+    t.text "options"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
