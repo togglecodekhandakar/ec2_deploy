@@ -8,6 +8,7 @@ end
 
 
 gem 'rails', '~> 5.1.3'
+
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -20,6 +21,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'simple_token_authentication', '~> 1.15', '>= 1.15.1'
+
+
 
 
 group :development, :test do

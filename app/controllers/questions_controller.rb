@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @questions = Question.order(:question_id).all
   end
 
   # GET /questions/1
@@ -35,6 +35,15 @@ class QuestionsController < ApplicationController
     @question.parttype_id = params[:parttype_id]
     @question.questiontype_id = params[:questiontype_id]
 
+    @category = Category.find(params[:category_id])
+    @parttype = Parttype.find(params[:parttype_id])
+    @questiontype = Questiontype.find(params[:questiontype_id])
+
+    @question[:category_text] = @category.category_name
+    @question[:parttype_text] = @parttype.parttype_name
+    @question[:questiontype_text] = @questiontype.questiontype_name
+    @question[:category_s_name] = @category.category_id_s_name
+
     respond_to do |format|
       if @question.save
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
@@ -54,15 +63,37 @@ class QuestionsController < ApplicationController
     @question.parttype_id = params[:parttype_id]
     @question.questiontype_id = params[:questiontype_id]
 
+    
+
     respond_to do |format|
       if @question.update(question_params)
+        
+
+
+        @single_category = Category.find(@question.category_id)
+        @single_parttype = Parttype.find(@question.parttype_id)
+        @single_questiontype = Questiontype.find(@question.questiontype_id )
+
+        #@question[:category_text] = @single_category.category_name
+        #@question[:parttype_text] = @single_parttype.parttype_name
+        #@question[:questiontype_text] = @single_questiontype.questiontype_name
+        #@question[:category_s_name] = @single_category.category_id_s_name
+
+        @question.update_attributes(:category_text => @single_category.category_name, :parttype_text => @single_parttype.parttype_name, :questiontype_text => @single_questiontype.questiontype_name, :category_s_name => @single_category.category_id_s_name)
+
+
         format.html { redirect_to @question, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
+
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
+
+
+
+
   end
 
   # DELETE /questions/1
@@ -83,6 +114,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:question_id, :question_text, :options, :category_id, :parttype_id, :questiontype_id)
+      params.require(:question).permit(:question_id, :question_text, :options, :category_id, :parttype_id, :questiontype_id, :category_text, :parttype_text, :questiontype_text, :category_s_name)
     end
 end

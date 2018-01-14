@@ -25,6 +25,7 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
+    @category.activity = params[:activity]
 
     respond_to do |format|
       if @category.save
@@ -42,6 +43,15 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
+
+        @activity = @category.activity
+
+        @query = "update questions set activity='"+@activity + "' where category_id =" + @category.id.to_s
+
+      @connection = ActiveRecord::Base.connection
+      result = @connection.exec_query(@query)
+
+
         format.html { redirect_to @category, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
@@ -69,6 +79,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:category_id, :category_id_s_name, :category_name)
+      params.require(:category).permit(:category_id, :category_id_s_name, :category_name, :activity)
     end
 end

@@ -30,6 +30,9 @@ class EmployeesController < ApplicationController
     @employee = Employee.new(employee_params)
     @employee.site_id = params[:site_id]
 
+    @site = Site.find(params[:site_id])
+    @employee[:site_name] = @site.site_name
+
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -45,8 +48,15 @@ class EmployeesController < ApplicationController
   # PATCH/PUT /employees/1.json
   def update
     @employee.site_id = params[:site_id]
+
+
     respond_to do |format|
       if @employee.update(employee_params)
+
+        @site = Site.find(@employee.site_id)
+
+        @employee.update_attributes(:site_name => @site.site_name)
+
         format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
         format.json { render :show, status: :ok, location: @employee }
       else
@@ -74,6 +84,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:employee_id, :first_name, :last_name, :email_address, :mobile_number, :user_name, :password, :manager_id, :site_id)
+      params.require(:employee).permit(:employee_id, :first_name, :last_name, :email_address, :mobile_number, :user_name, :password, :manager_id, :site_id, :site_name)
     end
 end

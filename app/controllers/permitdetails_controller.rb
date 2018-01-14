@@ -78,6 +78,21 @@ class PermitdetailsController < ApplicationController
     @permitdetail.commonquestion_id = params[:commonquestion_id]
 
 
+ if params[:question_id].blank?
+      @pemitdetail.question_text = "n/a"
+    else 
+      @questions = Question.find(params[:question_id])
+      @permitdetail[:question_text] = @questions.question_text
+
+    end
+
+    if params[:commonquestion_id].blank?
+      @pemitdetail.commonquestion_text = "n/a"
+    else 
+     @permitdetail[:commonquestion_text] = Commonquestion.find(params[:commonquestion_id]).question_text
+    end
+
+
     respond_to do |format|
       if @permitdetail.update(permitdetail_params)
         format.html { redirect_to @permitdetail, notice: 'Permitdetail was successfully updated.' }

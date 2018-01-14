@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170912234702) do
+ActiveRecord::Schema.define(version: 20171217113944) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "category_id"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20170912234702) do
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "activity"
   end
 
   create_table "commonquestions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170912234702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "site_id"
+    t.string "site_name"
     t.index ["site_id"], name: "index_employees_on_site_id"
   end
 
@@ -67,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170912234702) do
     t.bigint "permit_id"
     t.bigint "question_id"
     t.bigint "commonquestion_id"
+    t.string "reply_date"
+    t.string "reply_time"
     t.index ["commonquestion_id"], name: "index_permitdetails_on_commonquestion_id"
     t.index ["permit_id"], name: "index_permitdetails_on_permit_id"
     t.index ["question_id"], name: "index_permitdetails_on_question_id"
@@ -95,6 +99,11 @@ ActiveRecord::Schema.define(version: 20170912234702) do
     t.bigint "category_id"
     t.bigint "parttype_id"
     t.bigint "questiontype_id"
+    t.string "category_text"
+    t.string "parttype_text"
+    t.string "questiontype_text"
+    t.string "category_s_name"
+    t.string "activity"
     t.index ["category_id"], name: "index_questions_on_category_id"
     t.index ["parttype_id"], name: "index_questions_on_parttype_id"
     t.index ["questiontype_id"], name: "index_questions_on_questiontype_id"

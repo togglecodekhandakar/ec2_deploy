@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: PermitAdmin_production
-  username: PermitAdmin
-  password: <%= ENV['PERMITADMIN_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  #database: PermitAdmin_production
+  #username: PermitAdmin
+  #password: <%= ENV['PERMITADMIN_DATABASE_PASSWORD'] %>

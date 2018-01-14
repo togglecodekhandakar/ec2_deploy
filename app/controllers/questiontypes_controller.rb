@@ -16,8 +16,6 @@ class QuestiontypesController < ApplicationController
   def new
     @questiontype = Questiontype.new
 
-    
-
   end
 
   # GET /questiontypes/1/edit

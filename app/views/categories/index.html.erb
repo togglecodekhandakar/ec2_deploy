@@ -17,6 +17,7 @@
       <th>Category</th>
       <th>Category short name</th>
       <th>Category full name</th>
+      <th>Activity</th>
       <th colspan="3">Action</th>
     </tr>
   </thead>
@@ -27,6 +28,7 @@
         <td><%= category.category_id %></td>
         <td><%= category.category_id_s_name %></td>
         <td><%= category.category_name %></td>
+        <td><%= category.activity %></td>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
         <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>

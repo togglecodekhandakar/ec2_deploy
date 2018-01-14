@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
  
   get 'greetings/hello'
+  get 'greetings/get_quizzes'
+  #get 'greetings/get_permit_numbers'
+  post 'greetings/save_permit'
+
+  #post 'greetings/update_permit'
+
 
   resources :employees
   resources :permitdetails
