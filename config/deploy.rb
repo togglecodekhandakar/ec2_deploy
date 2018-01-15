@@ -2,7 +2,7 @@
 lock "~> 3.10.1"
 
 set :application, "Permit"
-set :repo_url, "git@github.com:togglecodekhandakar/permitadmin.git"
+set :repo_url, "git@github.com:togglecodekhandakar/ec2_deploy.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
