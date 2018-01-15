@@ -21,6 +21,18 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'devise', '~> 4.3'
 gem 'simple_token_authentication', '~> 1.15', '>= 1.15.1'
+gem 'figaro'
+
+
+
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rvm'
+end
 
 
 
