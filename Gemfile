@@ -10,7 +10,7 @@ end
 gem 'rails', '~> 5.1.3'
 
 gem 'mysql2', '>= 0.3.18', '< 0.5'
-gem 'puma', '~> 3.7'
+
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', '~> 3.5'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
@@ -27,12 +27,14 @@ gem 'figaro'
 
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano3-puma'
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rvm'
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
 end
+
+gem 'puma'
 
 
 
